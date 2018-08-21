@@ -266,9 +266,9 @@ func LogTypeToString(t LogType) string {
 	return "unknown"
 }
 func New() *Logger {
-	return NewLogger(os.Stderr, "")
+	return NewLogger(os.Stderr, "", Ldate|Ltime|Lshortfile)
 }
 
-func NewLogger(w io.Writer, prefix string) *Logger {
-	return &Logger{_log: log.New(w, prefix, Ldate|Ltime|Lshortfile), level: LOG_LEVEL_ALL, TimeFormat: FORMAT_TIME_DAY, SuffixName: ".log"}
+func NewLogger(w io.Writer, prefix string, flags int) *Logger {
+	return &Logger{_log: log.New(w, prefix, flags), level: LOG_LEVEL_ALL, TimeFormat: FORMAT_TIME_DAY, SuffixName: ".log"}
 }
